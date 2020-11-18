@@ -1,5 +1,4 @@
 from django.contrib.auth.base_user import BaseUserManager
-from passlib.hash import pbkdf2_sha256
 
 
 class CustomUserManager(BaseUserManager):
@@ -9,10 +8,7 @@ class CustomUserManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
 
-        enc_password = pbkdf2_sha256.encrypt(
-            password, rounds=12000, salt_size=32
-        )
-        user.set_password(enc_password)
+        user.set_password(password)
         user.save(using=self._db)
         return user
 
