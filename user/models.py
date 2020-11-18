@@ -7,14 +7,15 @@ from user.managers import CustomUserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(unique=True, default='')
-    name = models.CharField(max_length=50, blank=False)
+    email = models.EmailField(_('Email'), unique=True, default='')
+    first_name = models.CharField(_('Nome'), max_length=150, blank=False)
+    last_name = models.CharField(_('Sobrenome'), max_length=150, blank=False)
+    created_at = models.DateTimeField(_('Criado em'), auto_now_add=True)
     is_superadmin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=True)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name']
     objects = CustomUserManager()
 
     class Meta:
