@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate
-from passlib.hash import pbkdf2_sha256
+from django.contrib.auth.hashers import make_password, check_password
 from rest_framework import serializers
 
 from user import models
@@ -28,8 +28,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         phones = validated_data.pop('phones')
-        validated_data['password'] = pbkdf2_sha256.encrypt(
-            validated_data.pop('password'), rounds=12000, salt_size=32
+        validated_data['password'] = make_password(
+            validated_data.pop('password')
         )
         user = models.User.objects.create(**validated_data)
 
