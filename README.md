@@ -13,8 +13,8 @@ Nós esperamos que as mensagens de erro tenham o seguinte formato:
 ## /signup
 
 * Essa rota espera um usuário com os campos abaixo:
-    - firstName [String]
-    - lastName [String]
+    - first_name [String]
+    - last_name [String]
     - email [String]
     - password [String]
     - phones [List]
@@ -25,8 +25,8 @@ Nós esperamos que as mensagens de erro tenham o seguinte formato:
 
 ```json
     {
-        "firstName": "Hello",
-        "lastName": "World",
+        "first_name": "Hello",
+        "last_name": "World",
         "email": "hello@world.com"
         "password": "hunter2",
         "phones": [
@@ -64,8 +64,8 @@ Obs: O id do usuário pode ser um sequencial gerado pelo banco ou um id único.
     - Authorization [JWT Token]
  
 * Em caso de sucesso você deve retornar:
-    - `firstName`: Nome do usuário;
-    - `lastName`: Sobrenome do usuário;
+    - `first_name`: Nome do usuário;
+    - `last_name`: Sobrenome do usuário;
     - `email`: E-mail do usuário;
     - `phones`: Lista de telefones do usuário;
     - `created_at`: Data da criação do usuário;
