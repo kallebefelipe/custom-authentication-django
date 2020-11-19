@@ -1,5 +1,20 @@
 # API RESTful de usuários + login
 
+### Instalando projeto
+git clone https://github.com/kallebefelipe/custom-authentication-django.git
+
+cd custom-authentication-django
+
+pip install -r requirements.txt
+
+### Rodando migrações
+
+python manage.py migrate
+
+### Rodando servidor
+
+python manage.py runserver
+
 Criar aplicação que exponha uma API RESTful de criação de usuários com login.
 
 A aplicação deve aceitar e responder apenas em JSON.
