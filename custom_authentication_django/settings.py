@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 
+from decouple import config
+
+import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,6 +29,7 @@ SECRET_KEY = '$l2mgi$nwtgtoucup*9-)@1ivi*d+x)fzec5_lak=5es(o-jo7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+HEROKU = config('HEROKU')
 
 ALLOWED_HOSTS = ['*']
 
@@ -76,12 +81,20 @@ WSGI_APPLICATION = 'custom_authentication_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if HEROKU:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=config('DATABASE_URL')
+        )
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'db.sqlite3',
+        }
+    }
+
 
 
 # Password validation
