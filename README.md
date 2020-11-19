@@ -76,7 +76,7 @@ Obs: O id do usuário pode ser um sequencial gerado pelo banco ou um id único.
 
 ## /me 
 * Essa rota espera o token da api (via header):
-    - Authorization [JWT Token]
+    - Authorization ```Bearer {token}```
  
 * Em caso de sucesso você deve retornar:
     - `first_name`: Nome do usuário;
