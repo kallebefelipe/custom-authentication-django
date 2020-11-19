@@ -18,7 +18,8 @@ class SignupView(generics.GenericAPIView):
 
         token = RefreshToken.for_user(user)
         data = {
-            'token': str(token.access_token)
+            'token': str(token.access_token),
+            'user': serializer.data
         }
 
         return Response(
